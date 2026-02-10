@@ -1,8 +1,5 @@
 <?php
 
-$request_uri = $_SERVER['REQUEST_URI'];
+require_once __DIR__ . '/config/database.php';
 
-if (preg_match('#^/vehicle_count#', $request_uri)) {
-    require __DIR__ . '/routes/vehicle.php';
-    exit;
-}
+require_once __DIR__ . '/routes/vehicle.php';

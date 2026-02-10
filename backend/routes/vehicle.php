@@ -7,24 +7,18 @@ $method = $_SERVER['REQUEST_METHOD'];
 $routes = [
     'GET' => [
         '#^/vehicle_count/all/(gate=\d+|camera=\d+)&start=[\d\-]+&stop=[\d\-]+$#' => ['VehicleController', 'summary'],
-        '#^/vehicle_count/detection_records/?$#' => ['VehicleController', 'getAllDetectionRecord'],
     ],
     'POST' => [
         '#^/vehicle_count/?$#' => ['VehicleController', 'store'],
     ],
-    'PUT' => [
-
-    ],
-    'DELETE' => [
-
-    ]
 ];
 
 $matched = false;
+
 if (isset($routes[$method])) {
     foreach ($routes[$method] as $pattern => $handler) {
         if (preg_match($pattern, $uri)) {
-            call_user_func($handler);
+            call_user_func($handler, $connectDB); 
             $matched = true;
             break;
         }
@@ -32,6 +26,7 @@ if (isset($routes[$method])) {
 }
 
 if (!$matched) {
+    header('Content-Type: application/json');
     http_response_code(isset($routes[$method]) ? 404 : 405);
     echo json_encode(['error' => isset($routes[$method]) ? 'Not found' : 'Method not allowed']);
 }

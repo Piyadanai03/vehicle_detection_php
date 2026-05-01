@@ -8,6 +8,6 @@ services:
     environment:
       - DB_HOST=host.docker.internal
       - DB_NAME=cctv_traffic_db
-      - DB_USER=user
-      - DB_PASS=password
+      - DB_USER=root
+      - DB_PASS=p@ssw0rd
       - DB_CHARSET=utf8

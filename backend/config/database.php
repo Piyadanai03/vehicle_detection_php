@@ -2,8 +2,8 @@
 
 $host = getenv('DB_HOST') ?: 'localhost';
 $db   = getenv('DB_NAME') ?: 'cctv_traffic_db';
-$user = getenv('DB_USER') ?: 'user';
-$pass = getenv('DB_PASS') ?: 'password';
+$user = getenv('DB_USER') ?: 'root';
+$pass = getenv('DB_PASS') ?: 'p@ssw0rd';
 $charset = getenv('DB_CHARSET') ?: 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";

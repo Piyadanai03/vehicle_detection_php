@@ -1,15 +1,6 @@
 CREATE DATABASE IF NOT EXISTS cctv_traffic_db;
 USE cctv_traffic_db;
 
--- สร้างตาราง EdgeDevice
-CREATE TABLE IF NOT EXISTS EdgeDevice (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    location VARCHAR(255) NOT NULL,
-    token VARCHAR(255) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
 -- สร้างตาราง VehicleType
 CREATE TABLE IF NOT EXISTS VehicleType (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
@@ -36,6 +27,15 @@ CREATE TABLE IF NOT EXISTS Camera (
     FOREIGN KEY (gate_id) REFERENCES Gate(id)
 );
 
+-- สร้างตาราง EdgeDevice
+CREATE TABLE IF NOT EXISTS EdgeDevice (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    location VARCHAR(255) NOT NULL,
+    token VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 -- สร้างตาราง DetectionRecord
 CREATE TABLE IF NOT EXISTS DetectionRecord (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
@@ -50,6 +50,7 @@ CREATE TABLE IF NOT EXISTS DetectionRecord (
     FOREIGN KEY (vehicle_type_id) REFERENCES VehicleType(id),
     FOREIGN KEY (direction_type_id) REFERENCES DirectionType(id)
 );
+
 
 -- เพิ่มข้อมูลเริ่มต้น
 INSERT INTO VehicleType (name) VALUES ('car'), ('motorcycle'), ('bus');
